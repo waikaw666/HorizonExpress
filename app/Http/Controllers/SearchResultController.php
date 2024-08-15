@@ -48,3 +48,4 @@ class SearchResultController extends Controller
 //        $scheduleResult = Schedule::whereHas('origin' , function($query) use ($request){
 //                $query->where('origin', $request);
 
+// hello test
