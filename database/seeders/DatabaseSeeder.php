@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Destination;
+use App\Models\Origin;
 use App\Models\Schedule;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -21,5 +23,21 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        $cities = ["yangon","mandalay","lashio","taungyi","pyinoolwin","bagan","naypyitaw","mawlamyine","pathein","sittwe","myitkyina","loikaw","dawei"];
+
+        for($i=0; $i<count($cities); $i++){
+            Origin::factory()->create([
+                'origin_name' => $cities[$i],
+            ]);
+
+            Destination::factory()->create([
+                'destination_name' => $cities[$i],
+            ]);
+        }
+
+
+
+
     }
 }

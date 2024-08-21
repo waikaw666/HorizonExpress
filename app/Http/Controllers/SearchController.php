@@ -16,7 +16,13 @@ class SearchController extends Controller
 {
     public function index(): View|Factory|Application
     {
-        return view('search.index');
+        $origin = request('origin');
+        $destination = request('destination');
+        $date = request('date');
+
+        $bus_routes = [];
+
+        return view('search.index',['origin'=>$origin,'destination'=>$destination,'date'=>$date,'bus_routes'=>$bus_routes]);
     }
     public function search(): string
     {
