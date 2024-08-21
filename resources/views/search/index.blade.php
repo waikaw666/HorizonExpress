@@ -7,11 +7,11 @@
 <div>
     @for(
     $i = 0;
-//    $i < count($results);
-    $i < 10;
+    $i < count($schedules);
     $i++
     )
         <x-result-card
+            id="{{ $schedules[$i]->id }}"
             title="Bus Type"
             subtitle="Plate Number"
             note="Description"

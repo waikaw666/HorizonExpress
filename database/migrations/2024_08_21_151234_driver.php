@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schedules', function (Blueprint $table) {
+        Schema::create('driver', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignIdFor(\App\Models\Bus::class)->constrained()->cascadeOnDelete();
-            $table->string('departure_time');
-            $table->string('arrival_time');
-            $table->date('date');
-            $table->string('duration')->nullable();
+            $table->string('name');
+            $table->string('address');
+            $table->string('phone_number');
         });
     }
 
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('schedules');
+        //
     }
 };

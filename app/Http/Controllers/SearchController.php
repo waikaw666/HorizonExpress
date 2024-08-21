@@ -20,14 +20,9 @@ class SearchController extends Controller
         $destination = request('destination');
         $date = request('date');
 
-        $bus_routes = [];
+        $schedules = Schedule::all();
 
-        return view('search.index',['origin'=>$origin,'destination'=>$destination,'date'=>$date,'bus_routes'=>$bus_routes]);
-    }
-    public function search(): string
-    {
-
-        return "Lee";
+        return view('search.index',['origin'=>$origin,'destination'=>$destination,'date'=>$date,'schedules'=>$schedules]);
     }
 }
 

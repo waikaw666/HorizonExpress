@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Bus;
+use App\Models\BusRoute;
 use App\Models\Destination;
 use App\Models\Origin;
 use App\Models\Schedule;
@@ -19,10 +21,10 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+//        User::factory()->create([
+//            'name' => 'Test User',
+//            'email' => 'test@example.com',
+//        ]);
 
         $cities = ["yangon","mandalay","lashio","taungyi","pyinoolwin","bagan","naypyitaw","mawlamyine","pathein","sittwe","myitkyina","loikaw","dawei"];
 
@@ -36,8 +38,37 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        $origins = Origin::all();
+        $destinations = Origin::all();
+
+        for ($i = 0; $i < count($origins); $i++) {
+            for ($j = 0; $j < count($destinations); $j++) {
+                if ($origins[$i]->id != $destinations[$j]->id) {
+                    \App\Models\BusRoute::factory()->create([
+                        'origin_id' => $origins[$i]->id,
+                        'destination_id' => $destinations[$j]->id,
+                    ]);
+                }
+            }
+        }
+
+        $bus_route = BusRoute::first();
+
+        $bus = Bus::create([
+            'bus_type' => 'AC',
+            'plate_number' => 'ABC123',
+            'description' => 'This is a sample bus',
+        ]);
 
 
+        $schedules = Schedule::create([
+            'bus_route_id'=> $bus_route->id,
+            'bus_id' => $bus->id,
+            'departure_time' => '10:00 AM',
+            'arrival_time' => '12:00 PM',
+            'date' => '2024-08-12',
+            'duration' => '2 hours',
+        ]);
 
     }
 }

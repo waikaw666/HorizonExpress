@@ -15,7 +15,7 @@
         {{$note}}
     </p>
 
-    <a href="/register/123/seat" class="px-4 py-2 bg-blue-600 text-white ">
+    <a href="/register/{{$id}}/seat" class="px-4 py-2 bg-blue-600 text-white ">
         Select Trip
     </a>
 </div>

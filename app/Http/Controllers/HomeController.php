@@ -19,8 +19,7 @@ class HomeController extends Controller
     }
 
     public function search(Request $request){
-        error_log("Logging request");
-        error_log($request->all());
+
         return $request->all();
     }
 

@@ -21,5 +21,6 @@ Route::get('/search', [SearchController::class, 'index']);
 Route::get('/search-result', SearchResultController::class);
 
 Route::get('/admin',[AdminController::class,'index']);
-
+Route::get('/admin/bookings',[AdminController::class,'bookings']);
+Route::post('/book',[RegisterController::class,'book']);
 
