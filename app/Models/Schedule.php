@@ -6,24 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-/**
- * @method static
- */
 class Schedule extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
+
 
     public function bus(): BelongsTo
     {
         return $this->belongsTo(Bus::class);
     }
-    public function origin(): BelongsTo
+
+    public function busRoute(): BelongsTo
     {
-        return $this->belongsTo(Origin::class);
-    }
-    public function destination(): BelongsTo
-    {
-        return $this->belongsTo(Destination::class);
+        return $this->belongsTo(BusRoute::class);
     }
 }

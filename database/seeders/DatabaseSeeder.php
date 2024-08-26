@@ -64,11 +64,11 @@ class DatabaseSeeder extends Seeder
         $schedules = Schedule::create([
             'bus_route_id'=> $bus_route->id,
             'bus_id' => $bus->id,
+            'price'=> '15000',
             'departure_time' => '10:00 AM',
             'arrival_time' => '12:00 PM',
             'date' => '2024-08-12',
             'duration' => '2 hours',
         ]);
-
     }
 }

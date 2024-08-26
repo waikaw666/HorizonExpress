@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bus;
+use App\Models\BusRoute;
 use App\Models\Example;
 use App\Models\Origin;
 use App\Models\Schedule;
@@ -14,15 +15,27 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function index(): View|Factory|Application
+    public function index(Request $request): View|Factory|Application
     {
-        $origin = request('origin');
-        $destination = request('destination');
-        $date = request('date');
+        $origin_id = $request->input('origin');
+        $destination_id = $request->input('destination');
+        $date = $request->input('date');
 
-        $schedules = Schedule::all();
+        $bus_route = BusRoute::where('origin_id', $origin_id)
+            ->where('destination_id', $destination_id)
+            ->first();
 
-        return view('search.index',['origin'=>$origin,'destination'=>$destination,'date'=>$date,'schedules'=>$schedules]);
+        $schedules = Schedule::where('bus_route_id', $bus_route->id)
+            ->get();
+
+        return view('search.index', [
+            'origin' => $origin_id,
+            'destination' => $destination_id,
+            'date' => $date,
+            'schedules' => $schedules,
+        ]);
     }
+
+
 }
 
