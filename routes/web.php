@@ -28,6 +28,6 @@ Route::get('/test', function () {
 
 
 Route::get('/search', [SearchController::class, 'index']);
-Route::get('/search-result', SearchResultController::class);
+Route::get('/search-result', SearchResultController::class)->name('search-result');
 
 
