@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignIdFor(\App\Models\BusRoute::class)->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('phone_number');
         });

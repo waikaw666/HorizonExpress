@@ -18,8 +18,16 @@ Route::get('/register/{id}/info',[RegisterController::class,'register_info']);
 Route::get('/search', [SearchController::class, 'index']);
 
 Route::get('/admin',[AdminController::class,'index']);
-Route::get('/admin/bookings',[AdminController::class,'bookings']);
+
+Route::get('/admin/edit',[AdminController::class,'edit']);
+
+
+
+
+
 Route::post('/book',[RegisterController::class,'book']);
+
+
 
 Route::get('/success',[RegisterController::class,'success']);
 

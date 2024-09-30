@@ -12,6 +12,7 @@ class Booking extends Model
     protected $fillable = [
         'name', // add this line
         'phone_number', // add this line
-        'schedule_id' // add this line
+        'schedule_id' ,
+        'bus_route_id' // add this line
     ];
 }

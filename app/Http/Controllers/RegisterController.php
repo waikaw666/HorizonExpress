@@ -54,9 +54,12 @@ class RegisterController extends Controller
         $name = $request->input('name');
         $phone_number = $request->input('phone_number');
 
+        $bus_route_id = Schedule::find($schedule_id)->bus_route_id;
+
         $booking = new Booking(
             [
                 'schedule_id' => $schedule_id,
+                'bus_route_id' => $bus_route_id,
                 'name' => $name,
                 'phone_number' => $phone_number,
             ]

@@ -11,7 +11,7 @@
             </select>
 
             <label class="mb-1 text-xs font-medium font-['Montserrat']" for="destination">DESTINATION</label>
-            <select class="border-2 mb-2 p-2 outline-none capitalize" name="destination">
+            <select required class="border-2 mb-2 p-2 outline-none capitalize" name="destination">
 
 
                 @foreach($destinations as $destination)
