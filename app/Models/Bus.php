@@ -14,4 +14,11 @@ class Bus extends Model
     {
         return $this->hasMany(Schedule::class);
     }
+
+
+    protected $fillable = [
+        'bus_type',
+        'plate_number',
+        'description',
+    ];
 }

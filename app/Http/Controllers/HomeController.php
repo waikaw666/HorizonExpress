@@ -13,8 +13,6 @@ class HomeController extends Controller
         $originList = Origin::all();
         $destinationList = Destination::all();
 
-        error_log($originList[0]);
-
         return view('home',['originList'=>$originList,'destinationList'=>$destinationList]);
     }
 

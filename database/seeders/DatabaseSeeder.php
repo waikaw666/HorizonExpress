@@ -7,7 +7,7 @@ use App\Models\BusRoute;
 use App\Models\Destination;
 use App\Models\Origin;
 use App\Models\Schedule;
-use App\Models\User;
+use App\Models\Admin;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Database\Factories\ScheduleFactory;
 use Illuminate\Database\Seeder;
@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
+
     public function run(): void
     {
         // User::factory(10)->create();
@@ -25,6 +26,13 @@ class DatabaseSeeder extends Seeder
 //            'name' => 'Test User',
 //            'email' => 'test@example.com',
 //        ]);
+
+        $admin = new Admin();
+        $admin->name = 'Admin User';
+        $admin->email = 'admin@example.com';
+        $admin->role = 'owner';
+        $admin->password = bcrypt('password'); // Hash the password
+        $admin->save();
 
         $cities = ["yangon","mandalay","lashio","taungyi","pyinoolwin","bagan","naypyitaw","mawlamyine","pathein","sittwe","myitkyina","loikaw","dawei"];
 

@@ -45,7 +45,11 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function prebook(Request $request)
 
+    {
+
+    }
 
     public function book(Request $request)
     {
