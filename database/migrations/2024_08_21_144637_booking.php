@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\BusRoute::class)->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('phone_number');
-            $table->string('payment_method');
-            $table->string('payment_information');
-            $table->string('status');
+            $table->string('payment_method')->nullable();
+            $table->string('payment_information')->nullable();
+            $table->string('status')->default("unpaid");
         });
     }
 

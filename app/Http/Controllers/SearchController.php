@@ -17,14 +17,14 @@ class SearchController extends Controller
         $destination_id = $request->input('destination');
         $date = $request->input('date');
 
-//        $bus_route = BusRoute::where('origin_id', $origin_id)
-//            ->where('destination_id', $destination_id)
-//            ->first();
-//
-//        $schedules = Schedule::where('bus_route_id', $bus_route->id)
-//            ->get();
+        $bus_route = BusRoute::where('origin_id', $origin_id)
+            ->where('destination_id', $destination_id)
+            ->first();
 
-        $schedules = Schedule::all();
+        error_log($bus_route.'Here');
+
+        $schedules = Schedule::where('bus_route_id', $bus_route->id)
+            ->get();
 
         return view('search.index', [
             'origin' => $origin_id,

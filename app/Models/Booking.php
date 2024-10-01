@@ -14,6 +14,7 @@ class Booking extends Model
         'phone_number',
         'schedule_id' ,
         'bus_route_id',
+
         'payment_method',
         'payment_information',
         'status',

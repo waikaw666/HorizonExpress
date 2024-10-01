@@ -5,30 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\ReservedSeat;
 use App\Models\Schedule;
+use App\Models\Seat;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
-
-    // should have A1 to A4 to 8 rows
-
-    private $seats = [];
-
-    public function __construct() {
-        $rows = range('A', 'H');
-        $columns = range(1, 4); // Adjust the number of columns as needed
-
-        foreach ($rows as $row) {
-            foreach ($columns as $column) {
-                $this->seats[] = [
-                    'id' => $row . $column,
-                    'status' => 'available', // You can set this to 'booked' or other statuses as needed
-                ];
-            }
-        }
-    }
-
-
     public function register_seat()
     {
         $id = request('id');
@@ -37,21 +18,45 @@ class RegisterController extends Controller
         $reserved_seats = ReservedSeat::where('schedule_id', $id)->get();
         $reserved_seats_id_list = $reserved_seats->pluck('seat_id')->toArray();
 
+        // Fetch seats from the database
+        $seats = Seat::all();
+
         return view('register.seat', [
             'schedule' => $schedule,
-            'seats' => $this->seats,
+            'seats' => $seats,
             'reserved_seats' => $reserved_seats,
             'reserved_seats_id_list' => $reserved_seats_id_list,
         ]);
     }
 
-    public function prebook(Request $request)
-
+    public function register_info(Request $request, $id)
     {
+        $booking = Booking::find($id);
 
+        return view('register.info', [
+            'booking'=>$booking,
+        ]);
     }
 
-    public function book(Request $request)
+
+    public function book(Request $request,$id)
+    {
+
+        $booking = Booking::find($id);
+
+        if($booking){
+            $booking->payment_method = $request->input('payment_method');
+            $booking->payment_information = $request->input('payment_information');
+
+            $booking->status = 'paid';
+
+            $booking->save();
+        }
+
+        return redirect('/');
+    }
+
+    public function prebook(Request $request)
     {
         $schedule_id = $request->input('schedule_id');
         $selected_seats = explode(',', $request->input('selected_seats'));
@@ -69,7 +74,11 @@ class RegisterController extends Controller
             ]
         );
 
-        // Process the booking logic
+        $booking->save();
+
+        error_log("booking->".$booking);
+
+        // Process the booking
         foreach ($selected_seats as $seat_id) {
             ReservedSeat::create(
                 [
@@ -79,12 +88,11 @@ class RegisterController extends Controller
             );
         }
 
-        return redirect('/success');
+        return redirect('/bookings/'.$booking->id.'/info');
     }
 
-    public function success(){
+    public function success()
+    {
         return view('register.success');
     }
-
-
 }

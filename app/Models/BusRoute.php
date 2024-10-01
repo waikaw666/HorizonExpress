@@ -12,6 +12,10 @@ class BusRoute extends Model
 
     protected $guarded = [];
 
+    protected $fillable =[
+
+    ];
+
     public function origin(): BelongsTo
     {
         return $this->belongsTo(Origin::class, 'origin_id');

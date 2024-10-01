@@ -16,13 +16,11 @@ class DataController extends Controller
     public function create_origins(Request $request)
     {
         $origin = new Origin();
-        $origin->name = $request->name;
+        $origin->origin_name = $request->origin_name;
 
         $origin->save();
 
-        return response()->json([
-            'message' => 'Origin created successfully'
-        ]);
+        return redirect('/admin/origins');
     }
 
     public function update_origins(Request $request, $id)
@@ -30,13 +28,11 @@ class DataController extends Controller
         $origin = Origin::find($id);
 
         if($origin) {
-            $origin->name = $request->name;
+            $origin->origin_name = $request->origin_name;
 
             $origin->save();
 
-            return response()->json([
-                'message' => 'Origin updated successfully'
-            ]);
+            return redirect('/admin/origins');
         }
 
         return response()->json([
@@ -50,9 +46,7 @@ class DataController extends Controller
 
         if($origin) {
             $origin->delete();
-            return response()->json([
-                'message' => 'Origin deleted successfully'
-            ]);
+            return redirect('/admin/origins');
         }
 
         return response()->json([
@@ -67,9 +61,7 @@ class DataController extends Controller
 
         $destination->save();
 
-        return response()->json([
-            'message' => 'Destination created successfully'
-        ]);
+        return redirect('/admin/destinations');
     }
 
     public function update_destinations(Request $request, $id)
@@ -81,9 +73,7 @@ class DataController extends Controller
 
             $destination->save();
 
-            return response()->json([
-                'message' => 'Destination updated successfully'
-            ]);
+            return redirect('/admin/destinations');
         }
 
         return response()->json([
@@ -97,9 +87,7 @@ class DataController extends Controller
 
         if($destination) {
             $destination->delete();
-            return response()->json([
-                'message' => 'Destination deleted successfully'
-            ]);
+            return redirect('/admin/destinations');
         }
 
         return response()->json([
@@ -110,18 +98,17 @@ class DataController extends Controller
     public function create_schedules(Request $request)
     {
         $schedule = new Schedule();
-        $schedule->bus_id = $request->bus_id;
         $schedule->departure_time = $request->departure_time;
         $schedule->arrival_time = $request->arrival_time;
         $schedule->date = $request->date;
         $schedule->price = $request->price;
+        $schedule->bus_id = $request->bus_id;
+        $schedule->bus_route_id = $request->bus_route_id;
         $schedule->duration = $request->duration;
 
         $schedule->save();
 
-        return response()->json([
-            'message' => 'Schedule created successfully'
-        ]);
+        return redirect('/admin/schedules');
     }
 
 
@@ -131,18 +118,17 @@ class DataController extends Controller
         $schedule = Schedule::find($id);
 
         if($schedule) {
-            $schedule->bus_id = $request->bus_id;
             $schedule->departure_time = $request->departure_time;
             $schedule->arrival_time = $request->arrival_time;
             $schedule->date = $request->date;
             $schedule->price = $request->price;
+            $schedule->bus_id = $request->bus_id;
+            $schedule->bus_route_id = $request->bus_route_id;
             $schedule->duration = $request->duration;
 
             $schedule->save();
 
-            return response()->json([
-                'message' => 'Schedule updated successfully'
-            ]);
+            return redirect('/admin/schedules');
         }
 
         return response()->json([
@@ -171,14 +157,12 @@ class DataController extends Controller
     {
         $driver = new Driver();
         $driver->name = $request->name;
-        $driver->phone = $request->phone;
-        $driver->email = $request->email;
+        $driver->address = $request->address;
+        $driver->phone_number = $request->phone_number;
 
         $driver->save();
 
-        return response()->json([
-            'message' => 'Driver created successfully'
-        ]);
+        return redirect('/admin/drivers');
     }
 
     public function update_drivers(Request $request, $id)
@@ -187,14 +171,13 @@ class DataController extends Controller
 
         if($driver) {
             $driver->name = $request->name;
-            $driver->phone = $request->phone;
-            $driver->email = $request->email;
+            $driver->address = $request->address;
+            $driver->phone_number = $request->phone_number;
 
             $driver->save();
 
-            return response()->json([
-                'message' => 'Driver updated successfully'
-            ]);
+            return redirect('/admin/drivers');
+
         }
 
         return response()->json([
@@ -208,9 +191,7 @@ class DataController extends Controller
 
         if($driver) {
             $driver->delete();
-            return response()->json([
-                'message' => 'Driver deleted successfully'
-            ]);
+            return redirect('/admin/drivers');
         }
 
         return response()->json([
@@ -222,15 +203,13 @@ class DataController extends Controller
     public function create_buses(Request $request)
     {
         $bus = new Bus();
-        $bus->name = $request->name;
-        $bus->number_plate = $request->number_plate;
-        $bus->total_seats = $request->total_seats;
+        $bus->bus_type = $request->bus_type;
+        $bus->plate_number = $request->plate_number;
+        $bus->description = $request->description;
 
         $bus->save();
 
-        return response()->json([
-            'message' => 'Bus created successfully'
-        ]);
+        return redirect('/admin/buses');
     }
 
     public function update_buses(Request $request, $id)
@@ -238,15 +217,13 @@ class DataController extends Controller
         $bus = Bus::find($id);
 
         if($bus) {
-            $bus->name = $request->name;
-            $bus->number_plate = $request->number_plate;
-            $bus->total_seats = $request->total_seats;
+            $bus->bus_type = $request->bus_type;
+            $bus->plate_number = $request->plate_number;
+            $bus->description = $request->description;
 
             $bus->save();
 
-            return response()->json([
-                'message' => 'Bus updated successfully'
-            ]);
+            return redirect('/admin/buses');
         }
 
         return response()->json([
@@ -260,9 +237,7 @@ class DataController extends Controller
 
         if($bus) {
             $bus->delete();
-            return response()->json([
-                'message' => 'Bus deleted successfully'
-            ]);
+            return redirect('/admin/buses');
         }
 
         return response()->json([
@@ -275,13 +250,12 @@ class DataController extends Controller
         $bus_route = new BusRoute();
         $bus_route->origin_id = $request->origin_id;
         $bus_route->destination_id = $request->destination_id;
-        $bus_route->price = $request->price;
+
+        $bus_route->description = $request->description;
 
         $bus_route->save();
 
-        return response()->json([
-            'message' => 'Bus Route created successfully'
-        ]);
+        return redirect('/admin/bus-routes');
     }
 
     public function update_bus_routes(Request $request, $id)
@@ -295,9 +269,7 @@ class DataController extends Controller
 
             $bus_route->save();
 
-            return response()->json([
-                'message' => 'Bus Route updated successfully'
-            ]);
+            return redirect('/admin/bus-routes');
         }
 
         return response()->json([
@@ -311,9 +283,7 @@ class DataController extends Controller
 
         if($bus_route) {
             $bus_route->delete();
-            return response()->json([
-                'message' => 'Bus Route deleted successfully'
-            ]);
+            return redirect('/admin/bus-routes');
         }
 
         return response()->json([

@@ -27,13 +27,8 @@ class LoginController extends Controller
         $admin = Admin::where('email', $request->email)->first();
 
 
-        error_log("Entered Password: " . $request->password);
-        error_log("Hashed Password in DB: " . $admin);
-        error_log("Hash Check Result: " . (Hash::check($request->password, $admin->password) ? 'true' : 'false'));
-
         // Check if admin exists and password is correct
         if ($admin && Hash::check($request->password, $admin->password)) {
-            error_log("Passed");
 
             // Store admin's info in session manually
             Session::put('admin_id', $admin->id); // Store admin's ID in session
@@ -41,7 +36,7 @@ class LoginController extends Controller
 
             return redirect()->intended('/admin/'); // Redirect to admin dashboard
         }else{
-            error_log("Failed");
+
         }
 
         // If authentication fails

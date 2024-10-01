@@ -33,7 +33,7 @@
 
         <!-- Booking Form Section -->
         <div class="col-span-4 space-y-8">
-            <form class="border p-12 grid gap-4" action="/book" method="POST">
+            <form class="border p-12 grid gap-4" action="/prebook" method="POST">
                 @csrf
                 <input type="hidden" name="schedule_id" value="{{ $schedule->id }}">
                 <input type="hidden" name="selected_seats" id="selected_seats">
