@@ -37,6 +37,10 @@
             <a class="text-sm text-gray-500 hover:text-gray-900 " href="/admin/bookings">
                 Bookings
             </a>
+
+            <a class="text-sm text-gray-500 hover:text-gray-900 " href="/admin/feedbacks">
+                Feedbacks
+            </a>
         </div>
 
 

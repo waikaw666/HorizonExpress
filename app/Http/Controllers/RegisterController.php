@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Feedback;
 use App\Models\ReservedSeat;
 use App\Models\Schedule;
 use App\Models\Seat;
@@ -53,7 +54,7 @@ class RegisterController extends Controller
             $booking->save();
         }
 
-        return redirect('/');
+        return redirect('/success/'.$id);
     }
 
     public function prebook(Request $request)
@@ -91,8 +92,33 @@ class RegisterController extends Controller
         return redirect('/bookings/'.$booking->id.'/info');
     }
 
-    public function success()
+    public function success(Request $request,$id)
     {
-        return view('register.success');
+        $booking = Booking::find($id);
+
+        return view('register.success', [
+            'booking'=>$booking,
+        ]);
+    }
+
+    public function feedback()
+    {
+        return view('register.feedback');
+    }
+
+    public function create_feedback(Request $request)
+    {
+        $feedback = new Feedback(
+            [
+                'email' => $request->input('email'),
+                'name' => $request->input('name'),
+                'feedback' => $request->input('feedback'),
+                'status' => $request->input('status'),
+            ]
+        );
+
+        $feedback->save();
+
+        return redirect('/');
     }
 }

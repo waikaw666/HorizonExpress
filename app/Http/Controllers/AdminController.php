@@ -7,6 +7,7 @@ use App\Models\Bus;
 use App\Models\BusRoute;
 use App\Models\Destination;
 use App\Models\Driver;
+use App\Models\Feedback;
 use App\Models\Origin;
 use App\Models\ReservedSeat;
 use App\Models\Schedule;
@@ -151,5 +152,11 @@ class AdminController extends Controller
         }
 
         return redirect('/admin/destinations')->with('error', 'Destination not found');
+    }
+
+    public function feedbacks()
+    {
+        $feedbacks = Feedback::all();
+        return view('admin.feedbacks',['feedbacks'=>$feedbacks]);
     }
 }

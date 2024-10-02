@@ -22,8 +22,10 @@ Route::post('/prebook',[RegisterController::class,'prebook']);
 Route::get('/bookings/{id}/info',[RegisterController::class,'register_info']);
 Route::post('/bookings/{id}/info',[RegisterController::class,'book']);
 
+Route::post('/feedbacks',[RegisterController::class,'create_feedback']);
+Route::get('/feedbacks',[RegisterController::class,'feedback']);
 
-Route::get('/success',[RegisterController::class,'success']);
+Route::get('/success/{id}',[RegisterController::class,'success']);
 
 Route::get('/admin/login',[LoginController::class,'index']);
 Route::post('/admin/sign-in',[LoginController::class,'login']);
@@ -56,6 +58,7 @@ Route::middleware(AdminAuth::class)->group(function () {
     Route::delete("/admin/bus-routes/{id}",[DataController::class,'delete_bus_routes']);
 
     Route::get('/admin/seats',[AdminController::class,'seats']);
+    Route::get('/admin/feedbacks',[AdminController::class,'feedbacks']);
 
     Route::get('/admin/origins',[AdminController::class,'origins']);
     Route::post('admin/origins',[DataController::class,'create_origins']);
