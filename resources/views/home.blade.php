@@ -10,7 +10,12 @@
                         industry.</p>
                     <p class="text-white/90">Find the bus price for your ticket.</p>
                 </div>
-                <x-search-form></x-search-form>
+
+
+                <x-hero-search-form
+                    :origins="$originList"
+                    :destinations="$destinationList"
+                ></x-hero-search-form>
             </div>
         </header>
     </x-slot:heading>

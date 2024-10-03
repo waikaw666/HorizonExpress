@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schedules', function (Blueprint $table) {
+        Schema::create('seats', function (Blueprint $table) {
             $table->id();
+            $table->string('seat_number');
             $table->timestamps();
-            $table->foreignIdFor(\App\Models\Bus::class)->constrained()->cascadeOnDelete();
-            $table->string('departure_time');
-            $table->string('arrival_time');
-            $table->date('date');
-            $table->string('price');
-            $table->string('duration')->nullable();
         });
     }
 
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('schedules');
+        Schema::dropIfExists('seat');
     }
 };

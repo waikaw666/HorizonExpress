@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-',
+ app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -21,7 +22,7 @@
         {{$heading}}
 
         <main>
-            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 min-h-[90vh]">
                 {{$slot}}
             </div>
         </main>

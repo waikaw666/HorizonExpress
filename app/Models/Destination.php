@@ -12,5 +12,5 @@ class Destination extends Model
     protected $guarded = [];
     public function schedule(): HasMany{
         return $this->hasMany(Schedule::class);
-}
+    }
 }

@@ -3,9 +3,9 @@
         <div class="flex h-16 items-center justify-between">
             <div class="flex items-center">
                 <div class="flex items-center">
-                    <a href="/" class="block flex">
+                    <a href="/" class="block flex items-center gap-2">
                         <img class="h-9 w-9" src="/img/logo.png" alt="Horizon Express logo">
-                        <h1 class="text-yellow-400 ml-2 text-3xl font-bold font-['Teko']">Horizon Express</h1>
+                        <h1 class="text-base font-bold text-yellow-500">Horizon Express</h1>
                     </a>
                 </div>
                 <div class="hidden md:block">
