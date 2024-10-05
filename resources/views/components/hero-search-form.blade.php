@@ -23,8 +23,20 @@
         <label class="mb-1 text-xs font-medium font-['Montserrat']" for="date">DATE</label>
         <input class="border-2 mb-8 p-1.5 outline-none" type="date" name="date">
 
+
         <!-- Search Button -->
         <button id="search_button" class="bg-yellow-400 px-1 py-2 hover:bg-yellow-500 font-['Montserrat'] disabled:bg-yellow-300" type="submit">SEARCH</button>
+
+                @foreach($destinations as $destination)
+                    <option class="capitalize" value="{{$destination->id}}">{{$destination->destination_name}}</option>
+
+                @endforeach
+            </select>
+            <label class="mb-1 text-xs font-medium font-['Montserrat']" for="date">DATE</label>
+            <input class="border-2 mb-8 p-1.5 outline-none" type="date" name="date" required>
+
+        <button class="bg-yellow-400 px-1 py-2 hover:bg-yellow-300 font-['Montserrat']" type="submit">SEARCH</button>
+
     </form>
 </div>
 

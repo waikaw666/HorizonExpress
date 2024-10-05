@@ -76,9 +76,9 @@ class DatabaseSeeder extends Seeder
         ];
 
         $burmese_drivers = [
-            ['name' => 'ဦးမောင်မောင်', 'phone_number' => '0912345678'],
-            ['name' => 'ဦးအောင်အောင်', 'phone_number' => '0923456789'],
-            ['name' => 'ဦးကျော်ကျော်', 'phone_number' => '0934567890'],
+            ['name' => 'U Maung Maung', 'phone_number' => '0912345678'],
+            ['name' => 'U Aung Aung', 'phone_number' => '0923456789'],
+            ['name' => 'U Kyaw Kyaw', 'phone_number' => '0934567890'],
         ];
 
         $dates = ['2024-10-01', '2024-10-02', '2024-10-03','2024-10-04','2024-10-05','2024-10-06','2024-10-07'];

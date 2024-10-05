@@ -9,12 +9,12 @@
 
 
             <div class="grid grid-cols-1 gap-4 col-span-12">
-                <label class="font-medium">Name</label>
+                <label class="font-medium">Origin Name:</label>
                 <input
                     type="text"
                     name="origin_name"
                     class="p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
-                    placeholder="Enter Bus Type"
+                    placeholder="Enter Origin Name"
                     value="{{ isset($origin) ? $origin->origin_name : '' }}">
             </div>
 
@@ -32,7 +32,7 @@
                 <p class="text-gray-500">No buses available.</p>
             @else
                 <div class="grid grid-cols-12 text-blue-500 font-semibold mb-2">
-                    <div class="col-span-9">Name</div>
+                    <div class="col-span-9">Origin List</div>
                     <div class="col-span-3"></div>
                 </div>
                 @foreach($origins as $origin)
@@ -46,7 +46,7 @@
                             <form action="/admin/origins/{{ $origin->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="px-4 py-1.5 rounded bg-red-300">
+                                <button type="submit" class="px-4 py-1.5 rounded bg-red-400 text-slate-100">
                                     Delete
                                 </button>
                             </form>
