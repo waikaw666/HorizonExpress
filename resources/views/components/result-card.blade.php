@@ -9,7 +9,7 @@
     {{
 $departure_time
 }}
-
+    
     {{
 $arrival_time
 }}

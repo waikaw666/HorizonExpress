@@ -11,8 +11,8 @@
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <x-nav-link href="/">Home</x-nav-link>
-                        <x-nav-link href="/main/contact">Contact</x-nav-link>
-                        <x-nav-link href="/main/about">About</x-nav-link>
+                        <x-nav-link href="/contact">Contact</x-nav-link>
+                        <x-nav-link href="/about">About</x-nav-link>
                     </div>
                 </div>
             </div>

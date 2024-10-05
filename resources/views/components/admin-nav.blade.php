@@ -45,7 +45,7 @@
 
 
         <div class="flex gap-6">
-            <a href="/admin/logout" class="px-4 py-1.5 rounded bg-red-400 text-sm">
+            <a href="/admin/logout" class="px-4 py-1.5 rounded bg-red-400 text-sm text-slate-100">
                 Sign Out
             </a>
         </div>

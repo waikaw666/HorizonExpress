@@ -11,19 +11,19 @@
             @foreach ($schedules as $schedule)
                 <div class="border p-8 mb-4">
                     <h1 class="text-3xl font-bold capitalize pb-8">
-                        {{ $schedule->busRoute->origin->origin_name }} to {{ $schedule->busRoute->destination->destination_name }}
+                        {{ $schedule->busRoute->origin->origin_name }} - {{ $schedule->busRoute->destination->destination_name }}
                     </h1>
 
                     <h2 class="text-lg">
-                        Date of Departure: {{ $schedule->date }}
+                        <b>Date of Departure:</b> {{ $schedule->date }}
                     </h2>
 
                     <h2 class="text-lg">
-                        Bus: {{ $schedule->bus->bus_type }} ({{ $schedule->bus->plate_number }})
+                        <b>Bus:</b> {{ $schedule->bus->bus_type }} ({{ $schedule->bus->plate_number }})
                     </h2>
 
                     <h3 class="text-lg">
-                        Departure: {{ $schedule->departure_time }} | Arrival: {{ $schedule->arrival_time }}
+                        <b>Departure:</b> {{ $schedule->departure_time }} | <b>Arrival:</b> {{ $schedule->arrival_time }}
                     </h3>
 
                     <p>

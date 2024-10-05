@@ -20,7 +20,7 @@
                 @endforeach
             </select>
             <label class="mb-1 text-xs font-medium font-['Montserrat']" for="date">DATE</label>
-            <input class="border-2 mb-8 p-1.5 outline-none" type="date" name="date">
+            <input class="border-2 mb-8 p-1.5 outline-none" type="date" name="date" required>
 
         <button class="bg-yellow-400 px-1 py-2 hover:bg-yellow-300 font-['Montserrat']" type="submit">SEARCH</button>
     </form>
