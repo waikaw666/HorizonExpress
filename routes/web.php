@@ -72,6 +72,11 @@ Route::middleware(AdminAuth::class)->group(function () {
     Route::put("/admin/destinations/{id}",[DataController::class,'update_destinations']);
     Route::delete("/admin/destinations/{id}",[DataController::class,'delete_destinations']);
 
+    Route::get('/admin/admins',[AdminController::class,'admins']);
+    Route::post('admin/admins',[DataController::class,'create_admin']);
+    Route::put("/admin/admins/{id}",[DataController::class,'update_admin']);
+    Route::delete("/admin/admins/{id}",[DataController::class,'delete_admin']);
+
     Route::get('/admin/bookings',[AdminController::class,'bookings']);
 
     Route::get('/admin/logout',[LoginController::class,'logout']);

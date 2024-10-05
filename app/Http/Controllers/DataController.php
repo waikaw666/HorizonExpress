@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Schedule;
 use App\Models\Driver;
 use App\Models\Bus;
+use App\Models\Admin;
 use App\Models\BusRoute;
 
 
@@ -290,4 +291,53 @@ class DataController extends Controller
             'message' => 'Bus Route not found'
         ], 404);
     }
+
+    public function create_admin(Request $request)
+    {
+        $admin = new Admin();
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->phonenumber = $request->phonenumber;
+        $admin->password = bcrypt($request->password);
+        $admin->role = "admin";
+
+        $admin->save();
+
+        return redirect('/admin/admins');
+    }
+
+
+        public function update_admin(Request $request, $id)
+     {
+        $admin = Admin::find($id);
+
+        if($admin) {
+            $admin->name = $request->name;
+            $admin->email = $request->email;
+            $admin->phonenumber = $request->phonenumber;
+            $admin->password = bcrypt($request->password);
+            $admin->role = "admin";
+
+            $admin->save();
+
+            return redirect('/admin/admins');
+        }
+
+        // Add handling for admin not found
+        return redirect('/admin/admins')->withErrors(['Admin not found']);
+    }
+
+        public function delete_admin(Request $request, $id)
+        {
+            $admin = Admin::find($id);
+
+            if($admin) {
+                $admin->delete();
+                return redirect('/admin/admins');
+            }
+
+            return response()->json([
+                'message' => 'Admin not found'
+            ], 404);
+        }
 }

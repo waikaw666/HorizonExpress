@@ -12,6 +12,7 @@ use App\Models\Origin;
 use App\Models\ReservedSeat;
 use App\Models\Schedule;
 use App\Models\Seat;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -152,6 +153,11 @@ class AdminController extends Controller
         }
 
         return redirect('/admin/destinations')->with('error', 'Destination not found');
+    }
+
+    public function admins(){
+        $admins = Admin::all();
+        return view('admin.admins',['admins'=>$admins]);
     }
 
     public function feedbacks()

@@ -6,7 +6,7 @@
         <div class="col-span-8 w-full border p-12 grid grid-cols-4 gap-6 bg-gray-50 rounded">
             @foreach($seats as $seat)
                 @if(collect($reserved_seats_id_list)->contains($seat['id']))
-                <button
+                    <button
                         type="button"
                         class="border h-24 seat-button bg-red-500 text-white rounded"
                         data-seat="{{ $seat['id'] }}"
@@ -26,8 +26,6 @@
                         Seat {{ $seat['id'] }} ({{ $schedule->price }})
                     </button>
                 @endif
-
-
             @endforeach
         </div>
 
@@ -49,7 +47,8 @@
                 <label for="phone_number">Your Phone Number</label>
                 <input class="p-2 border" type="text" name="phone_number" required>
 
-                <button class="p-2 bg-blue-500 hover:bg-blue-600 mt-4" type="submit">Register</button>
+                <!-- Submit button -->
+                <button id="submit_button" class="p-2 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 mt-4" type="submit" disabled>Register</button>
             </form>
         </div>
     </div>
@@ -79,6 +78,9 @@
             document.getElementById('selected_seats_display').textContent = selectedSeats.length > 0 ? selectedSeats.join(', ') : 'None';
             document.getElementById('total_price_display').textContent = totalPrice.toFixed(2);
             document.getElementById('total_price_input').value = totalPrice.toFixed(2);
+
+            // Enable/disable the submit button based on seat selection
+            document.getElementById('submit_button').disabled = selectedSeats.length === 0;
         }
     </script>
 </x-layout>
